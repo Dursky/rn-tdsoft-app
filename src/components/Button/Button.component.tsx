@@ -8,7 +8,6 @@ type buttonType = 'search' | 'addToLike' | 'removeFromLiked' | 'like';
 type ButtonProps = {
   variant?: 'filled' | 'outlined';
   type?: buttonType;
-  isFilledStar?: boolean;
   onPress?: () => void;
   style?: ViewStyle;
   textStyle?: TextStyle;
@@ -18,7 +17,6 @@ export const Button = (props: ButtonProps) => {
   const {
     variant = 'filled',
     type = 'search',
-    isFilledStar = false,
     onPress,
     style,
     textStyle,
