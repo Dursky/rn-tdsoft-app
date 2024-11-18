@@ -3,7 +3,13 @@ import {TouchableOpacity, Text, ViewStyle, TextStyle, View} from 'react-native';
 import {Star} from '@/icons';
 import {styles} from './Button.styled';
 
-type buttonType = 'search' | 'addToLike' | 'removeFromLiked' | 'like';
+type buttonType =
+  | 'search'
+  | 'addToLike'
+  | 'removeFromLiked'
+  | 'like'
+  | 'reset'
+  | 'apply';
 
 type ButtonProps = {
   variant?: 'filled' | 'outlined';
@@ -27,6 +33,8 @@ export const Button = (props: ButtonProps) => {
     addToLike: 'ADD TO LIKE',
     removeFromLiked: 'REMOVE FROM LIKED',
     like: 'LIKE',
+    reset: 'RESET',
+    apply: 'APPLY',
   };
 
   const buttonIcons: Record<buttonType, React.ReactNode | null> = {
@@ -34,6 +42,8 @@ export const Button = (props: ButtonProps) => {
     addToLike: <Star color="white" />,
     removeFromLiked: <Star color="accent" fillColor="accent" />,
     like: null,
+    reset: null,
+    apply: null,
   };
 
   return (
