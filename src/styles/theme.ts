@@ -33,6 +33,10 @@ export const theme = {
       fontFamily: 'Inter-Regular',
       letterSpacing: getLetterSpacing(36, -6),
     },
+    placeholder: {
+      fontSize: 16,
+      fontFamily: 'Inter-Regular',
+    },
   },
   spacing: {
     xs: 4,
@@ -43,5 +47,6 @@ export const theme = {
   },
   borderRadius: {
     pill: 100,
+    xs: 4,
   },
 } as const;
