@@ -11,4 +11,10 @@ export const styles = StyleSheet.create({
     paddingTop: theme.spacing.md,
     paddingRight: theme.spacing.md,
   },
+  list: {
+    backgroundColor: theme.colors.lightGreen,
+    paddingLeft: theme.spacing.md,
+    paddingRight: theme.spacing.md,
+    paddingBottom: theme.spacing.md,
+  },
 });

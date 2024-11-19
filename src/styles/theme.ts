@@ -1,4 +1,4 @@
-const getLetterSpacing = (fontSize: number, percentage: number) => {
+export const getLetterSpacing = (fontSize: number, percentage: number) => {
   return fontSize * (percentage / 100);
 };
 

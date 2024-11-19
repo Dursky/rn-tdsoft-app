@@ -3,17 +3,11 @@ import {TouchableOpacity, Text, ViewStyle, TextStyle, View} from 'react-native';
 import {Star} from '@/icons';
 import {styles} from './Button.styled';
 
-type buttonType =
-  | 'search'
-  | 'addToLike'
-  | 'removeFromLiked'
-  | 'like'
-  | 'reset'
-  | 'apply';
-
+type iconType = 'whiteOutline' | 'greenOutline' | 'gold';
 type ButtonProps = {
   variant?: 'filled' | 'outlined';
-  type?: buttonType;
+  iconType?: iconType;
+  content?: string;
   onPress?: () => void;
   style?: ViewStyle;
   textStyle?: TextStyle;
@@ -22,28 +16,17 @@ type ButtonProps = {
 export const Button = (props: ButtonProps) => {
   const {
     variant = 'filled',
-    type = 'search',
+    iconType,
+    content = 'Button',
     onPress,
     style,
     textStyle,
   } = props;
 
-  const buttonTexts: Record<buttonType, string> = {
-    search: 'SEARCH',
-    addToLike: 'ADD TO LIKE',
-    removeFromLiked: 'REMOVE FROM LIKED',
-    like: 'LIKE',
-    reset: 'RESET',
-    apply: 'APPLY',
-  };
-
-  const buttonIcons: Record<buttonType, React.ReactNode | null> = {
-    search: null,
-    addToLike: <Star color="white" />,
-    removeFromLiked: <Star color="accent" fillColor="accent" />,
-    like: null,
-    reset: null,
-    apply: null,
+  const buttonIcons: Record<iconType, React.ReactNode> = {
+    whiteOutline: <Star color="white" />,
+    greenOutline: <Star color="primary" />,
+    gold: <Star color="accent" fillColor="accent" />,
   };
 
   return (
@@ -54,7 +37,7 @@ export const Button = (props: ButtonProps) => {
         style,
       ]}
       onPress={onPress}>
-      {buttonIcons[type]}
+      {iconType ? buttonIcons[iconType] : null}
       <View style={styles.spacer} />
       <Text
         style={[
@@ -62,8 +45,10 @@ export const Button = (props: ButtonProps) => {
           variant === 'outlined' ? styles.textOutlined : styles.textFilled,
           textStyle,
         ]}>
-        {buttonTexts[type]}
+        {content}
       </Text>
     </TouchableOpacity>
   );
 };
+
+export default Button;
