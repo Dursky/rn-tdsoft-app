@@ -10,3 +10,5 @@ export const Header = () => {
     </View>
   );
 };
+
+export default Header;

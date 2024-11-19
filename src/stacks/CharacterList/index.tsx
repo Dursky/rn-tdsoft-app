@@ -3,7 +3,7 @@ import React from 'react';
 import {CharacterListStackRoutes} from './CharacterList.routes';
 import {CharacterListScreen} from './screens';
 import {CharacterDetailsStack} from '../CharacterDetails';
-import {Header} from '@/components/Header/Header.component';
+import {Header} from '@/components/Header';
 
 const Stack = createNativeStackNavigator();
 
