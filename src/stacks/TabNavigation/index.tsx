@@ -4,10 +4,43 @@ import {CharacterListScreen} from './screens/CharacterList';
 import {FavoriteCharactersScreen} from './screens/FavoriteCharacters';
 import {Tab as TabComponent} from '@/components';
 import {tabConfigStyles} from './Tab.styled';
-import {View} from 'react-native';
 import {Footer} from '@/components/Footer/Footer.component';
+import {Header} from '@/components/Header/Header.component';
 
-const Tab = createBottomTabNavigator();
+type TabParamList = {
+  'ALL CHARACTERS': undefined;
+  'LIKED CHARACTERS': undefined;
+};
+
+type TabType = 'allCharacters' | 'likedCharacters';
+
+interface TabScreenProps {
+  onPress?: (e: any) => void;
+  accessibilityState?: {
+    selected?: boolean;
+  };
+}
+
+interface ExtraOptions {
+  header?: () => React.ReactNode;
+}
+
+const Tab = createBottomTabNavigator<TabParamList>();
+
+const createTabScreenProps = (
+  type: TabType,
+  extraOptions: ExtraOptions = {},
+) => ({
+  ...tabConfigStyles,
+  tabBarButton: ({onPress, accessibilityState}: TabScreenProps) => (
+    <TabComponent
+      type={type}
+      onPress={e => onPress?.(e)}
+      active={accessibilityState?.selected}
+    />
+  ),
+  ...extraOptions,
+});
 
 export const TabNavigationStack = () => {
   return (
@@ -16,30 +49,14 @@ export const TabNavigationStack = () => {
         <Tab.Screen
           name="ALL CHARACTERS"
           component={CharacterListStack}
-          options={{
-            ...tabConfigStyles,
-            tabBarButton: ({onPress, accessibilityState}) => (
-              <TabComponent
-                type="allCharacters"
-                onPress={e => onPress?.(e)}
-                active={accessibilityState?.selected}
-              />
-            ),
-          }}
+          options={createTabScreenProps('allCharacters')}
         />
         <Tab.Screen
           name="LIKED CHARACTERS"
           component={FavoriteCharactersStack}
-          options={{
-            ...tabConfigStyles,
-            tabBarButton: ({onPress, accessibilityState}) => (
-              <TabComponent
-                type="likedCharacters"
-                onPress={e => onPress?.(e)}
-                active={accessibilityState?.selected}
-              />
-            ),
-          }}
+          options={createTabScreenProps('likedCharacters', {
+            header: Header,
+          })}
         />
       </Tab.Navigator>
       <Footer />
