@@ -32,6 +32,14 @@
     {
       "path": "assets/fonts/Inter-VariableFont_opsz,wght.ttf",
       "sha1": "ee5c2e22ffeddefc433c9aa4c76779bb73a5c682"
+    },
+    {
+      "path": "assets/images/index.ts",
+      "sha1": "23fcc1783406af78ec98cae6ee88399728b2bf0c"
+    },
+    {
+      "path": "assets/images/logo.png",
+      "sha1": "11b7fd71e7b36fffed1bc86229a93b3b304c1751"
     }
   ]
 }
