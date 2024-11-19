@@ -6,6 +6,7 @@ import {CharacterListStackNavigationProp} from '../../CharacterList.routes';
 
 const CharacterListScreen = () => {
   const {navigate} = useNavigation<CharacterListStackNavigationProp>();
+
   return (
     <View style={styles.container}>
       <Text>Implement CharactersListScreen</Text>
