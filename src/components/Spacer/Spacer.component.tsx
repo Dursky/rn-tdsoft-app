@@ -11,3 +11,5 @@ export const Spacer = (props: SpacerProps) => {
 
   return <View style={[styles.container, {height: y}]} />;
 };
+
+export default Spacer;

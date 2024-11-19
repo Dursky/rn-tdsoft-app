@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {Character, ApiResponse, CharacterFilters} from './types';
+import {Character, ApiResponse, CharacterFilters} from '@/types';
 
 const api = axios.create({
   baseURL: 'https://rickandmortyapi.com/api',
