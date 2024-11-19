@@ -13,6 +13,7 @@ export const theme = {
     mediumGreen: '#59695C',
     darkGreen: '#162C1B',
     greyshGreen: '#DAE4DC',
+    lightGreen: '#F4F6F5',
   },
   typography: {
     button: {
@@ -30,7 +31,7 @@ export const theme = {
     },
     heading: {
       fontSize: 36,
-      fontFamily: 'Inter-Regular',
+      fontFamily: 'Inter-Medium',
       letterSpacing: getLetterSpacing(36, -6),
     },
     placeholder: {
