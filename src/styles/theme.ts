@@ -14,6 +14,8 @@ export const theme = {
     darkGreen: '#162C1B',
     greyshGreen: '#DAE4DC',
     lightGreen: '#F4F6F5',
+
+    lightGrey: '#F4F6F5',
   },
   typography: {
     button: {

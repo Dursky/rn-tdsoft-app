@@ -1,15 +1,15 @@
 import React from 'react';
 import {View} from 'react-native';
-import {styles} from './Spacer.styled';
 
 type SpacerProps = {
-  y: number;
+  y?: number;
+  x?: number;
 };
 
 export const Spacer = (props: SpacerProps) => {
-  const {y} = props;
+  const {y, x} = props;
 
-  return <View style={[styles.container, {height: y}]} />;
+  return <View style={[{height: y, width: x ?? '100%'}]} />;
 };
 
 export default Spacer;
