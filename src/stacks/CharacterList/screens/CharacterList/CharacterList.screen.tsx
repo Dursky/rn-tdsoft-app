@@ -8,8 +8,7 @@ import {SearchBar} from '@/components';
 import {Spacer} from '@/components/Spacer/Spacer.component';
 import {CharacterCard} from '@/components/CharacterCard';
 import {mockData} from '@/utils/mock';
-
-const getFlatListSpacer = () => <Spacer y={theme.spacing.lg} />;
+import {getFlatListSpacer} from '../../../../utils';
 
 const CharacterListScreen = () => {
   const {navigate} = useNavigation<CharacterListStackNavigationProp>();
@@ -32,7 +31,17 @@ const CharacterListScreen = () => {
         data={mockData}
         style={styles.list}
         ItemSeparatorComponent={getFlatListSpacer}
-        renderItem={({item}) => <CharacterCard item={item} />}
+        renderItem={({item}) => (
+          <CharacterCard
+            item={item}
+            onPress={() =>
+              navigate('CharacterDetailsStack', {
+                screen: 'CharacterDetailsScreen',
+                params: item,
+              })
+            }
+          />
+        )}
         keyExtractor={item => item.id.toString()}
         contentContainerStyle={styles.list}
       />

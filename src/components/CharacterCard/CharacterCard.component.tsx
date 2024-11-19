@@ -12,6 +12,7 @@ type CharacterCardProps = {
   view?: 'detail' | 'basic';
   isLike?: boolean;
   onPress?: () => void;
+  disabled?: boolean;
 };
 
 export const CharacterCard = (props: CharacterCardProps) => {
@@ -20,6 +21,7 @@ export const CharacterCard = (props: CharacterCardProps) => {
     view = 'basic',
     isLike,
     onPress,
+    disabled,
   } = props;
 
   return (
@@ -28,7 +30,8 @@ export const CharacterCard = (props: CharacterCardProps) => {
       shadowColor={theme.colors.primary}>
       <TouchableOpacity
         onPress={onPress}
-        style={view === 'detail' ? styles.detailContainer : styles.container}>
+        style={view === 'detail' ? styles.detailContainer : styles.container}
+        disabled={disabled}>
         {view === 'detail' ? (
           <>
             <Image source={{uri: image}} style={styles.detailImage} />
