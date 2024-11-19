@@ -8,7 +8,6 @@ export const styles = StyleSheet.create({
   },
   container: {
     width: '100%',
-    height: 200,
     paddingTop: theme.spacing.lg,
     paddingBottom: theme.spacing.lg,
     paddingLeft: theme.spacing.md,
