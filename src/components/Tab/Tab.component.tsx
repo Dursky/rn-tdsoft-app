@@ -6,11 +6,11 @@ import Person from '@/icons/Person';
 import {theme} from '@/styles';
 
 type TabProps = {
-  onPress?: (event: GestureResponderEvent) => void;
   disabled?: boolean;
   selected?: boolean;
   type: 'allCharacters' | 'likedCharacters';
   active?: boolean;
+  onPress?: (event: GestureResponderEvent) => void;
 };
 
 export const Tab = (props: TabProps) => {

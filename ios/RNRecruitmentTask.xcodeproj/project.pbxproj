@@ -23,6 +23,8 @@
 		9BB4C8658BA54BAB952DB030 /* DMMono-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 74FE5E8EA58D40E5AAC84073 /* DMMono-Regular.ttf */; };
 		3AE9883BEC1A4576A183F771 /* Inter-VariableFont_opsz,wght.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 19A1FCD176C54663A3C2F820 /* Inter-VariableFont_opsz,wght.ttf */; };
 		17AEDEC2A3394677AFD07842 /* Inter-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = ACBB6976676D47EAB59F4E75 /* Inter-Regular.otf */; };
+		0ED521C1E2B04373BDA95AE0 /* index.ts in Resources */ = {isa = PBXBuildFile; fileRef = DBE3531CCD75418C911C6605 /* index.ts */; };
+		17978DB93304460E9E0EA998 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 510F9481AD5D404584A6B893 /* logo.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +64,8 @@
 		74FE5E8EA58D40E5AAC84073 /* DMMono-Regular.ttf */ = {isa = PBXFileReference; name = "DMMono-Regular.ttf"; path = "../assets/fonts/DMMono-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		19A1FCD176C54663A3C2F820 /* Inter-VariableFont_opsz,wght.ttf */ = {isa = PBXFileReference; name = "Inter-VariableFont_opsz,wght.ttf"; path = "../assets/fonts/Inter-VariableFont_opsz,wght.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		ACBB6976676D47EAB59F4E75 /* Inter-Regular.otf */ = {isa = PBXFileReference; name = "Inter-Regular.otf"; path = "../assets/fonts/Inter-Regular.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		DBE3531CCD75418C911C6605 /* index.ts */ = {isa = PBXFileReference; name = "index.ts"; path = "../assets/images/index.ts"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		510F9481AD5D404584A6B893 /* logo.png */ = {isa = PBXFileReference; name = "logo.png"; path = "../assets/images/logo.png"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -179,6 +183,8 @@
 				74FE5E8EA58D40E5AAC84073 /* DMMono-Regular.ttf */,
 				19A1FCD176C54663A3C2F820 /* Inter-VariableFont_opsz,wght.ttf */,
 				ACBB6976676D47EAB59F4E75 /* Inter-Regular.otf */,
+				DBE3531CCD75418C911C6605 /* index.ts */,
+				510F9481AD5D404584A6B893 /* logo.png */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -288,6 +294,8 @@
 				9BB4C8658BA54BAB952DB030 /* DMMono-Regular.ttf in Resources */,
 				3AE9883BEC1A4576A183F771 /* Inter-VariableFont_opsz,wght.ttf in Resources */,
 				17AEDEC2A3394677AFD07842 /* Inter-Regular.otf in Resources */,
+				0ED521C1E2B04373BDA95AE0 /* index.ts in Resources */,
+				17978DB93304460E9E0EA998 /* logo.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
