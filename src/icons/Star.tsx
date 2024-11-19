@@ -10,7 +10,6 @@ type StarProps = {
 
 export const Star = (props: StarProps) => {
   const {color = 'primary', fillColor = 'transparent', disabled} = props;
-  console.log(disabled ? theme.colors.greyshGreen : theme.colors[color]);
 
   return (
     <Svg

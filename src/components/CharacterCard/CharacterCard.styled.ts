@@ -14,6 +14,12 @@ export const styles = StyleSheet.create({
     borderStyle: 'solid',
     borderWidth: 1,
     borderColor: theme.colors.primary,
+
+    //shadowColor: '#224229',
+    shadowColor: 'black',
+    shadowOpacity: 0.26,
+    shadowOffset: {width: 0, height: 2},
+    shadowRadius: 10,
   },
   rowLabelContainer: {
     padding: 8,
