@@ -16,6 +16,7 @@ export const theme = {
     lightGreen: '#F4F6F5',
 
     lightGrey: '#F4F6F5',
+    greyGreen: '#59695C',
   },
   typography: {
     button: {

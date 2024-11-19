@@ -61,13 +61,13 @@ export const styles = StyleSheet.create({
     color: theme.colors.darkGreen,
   },
   detailContainer: {
-    width: '100%',
     backgroundColor: theme.colors.white,
     borderRadius: theme.spacing.lg,
     padding: theme.spacing.md,
     borderStyle: 'solid',
     borderWidth: 1,
     borderColor: theme.colors.darkGreen,
+    flex: 1,
   },
   detailImage: {
     width: '100%',
