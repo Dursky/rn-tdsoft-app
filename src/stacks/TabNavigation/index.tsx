@@ -4,8 +4,8 @@ import {CharacterListScreen} from './screens/CharacterList';
 import {FavoriteCharactersScreen} from './screens/FavoriteCharacters';
 import {Tab as TabComponent} from '@/components';
 import {tabConfigStyles} from './Tab.styled';
-import {Footer} from '@/components/Footer/Footer.component';
-import {Header} from '@/components/Header/Header.component';
+import {Footer} from '@/components/Footer';
+import {Header} from '@/components/Header';
 
 type TabParamList = {
   'ALL CHARACTERS': undefined;

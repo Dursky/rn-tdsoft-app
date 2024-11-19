@@ -2,7 +2,7 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import React from 'react';
 import {FavoriteCharactersStackRoutes} from './FavoriteCharacters.routes';
 import {FavoriteCharactersScreen} from './screens';
-import {Header} from '@/components/Header/Header.component';
+import {Header} from '@/components/Header';
 
 const Stack = createNativeStackNavigator();
 
