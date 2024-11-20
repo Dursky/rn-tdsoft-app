@@ -5,9 +5,11 @@ export const styles = StyleSheet.create({
   container: {
     height: 70,
     width: '100%',
-    justifyContent: 'center',
+    justifyContent: 'space-between',
     alignItems: 'center',
     backgroundColor: theme.colors.darkGreen,
+    paddingTop: 16,
+    paddingBottom: 16,
   },
   active: {
     color: theme.colors.white,

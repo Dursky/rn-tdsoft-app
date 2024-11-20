@@ -1,19 +1,33 @@
-import {StyleSheet} from 'react-native';
 import {theme} from '@/styles';
+import {StyleSheet} from 'react-native';
 
 export const styles = StyleSheet.create({
   container: {
-    width: 16,
-    height: 16,
-    backgroundColor: theme.colors.white,
-    justifyContent: 'center',
+    flexDirection: 'row',
     alignItems: 'center',
+    gap: theme.spacing.sm,
+  },
+  checkbox: {
+    width: 16,
+    height: theme.spacing.md,
     borderRadius: 4,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
-  containerChecked: {
-    backgroundColor: theme.colors.darkGreen,
+  noChecked: {
+    borderColor: theme.colors.greyshGreen,
+    borderWidth: 2,
   },
-  containerDisabled: {
-    opacity: 0.5,
+  checked: {
+    backgroundColor: theme.colors.primary,
+  },
+  disabled: {
+    borderColor: 'grey',
+  },
+  label: {
+    fontSize: 16,
+  },
+  disabledText: {
+    color: 'grey',
   },
 });

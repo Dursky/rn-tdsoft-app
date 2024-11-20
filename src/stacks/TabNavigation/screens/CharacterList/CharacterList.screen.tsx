@@ -72,13 +72,12 @@ const CharacterListScreen = () => {
     <View style={styles.container}>
       <View style={styles.heading}>
         <Text style={theme.typography.heading}>Characters</Text>
-
         <Spacer y={10} />
         <SearchBar
           onChangeText={handleSearch}
           onClear={handleClear}
           value={searchText}
-          placeholder="Search characters..."
+          placeholder="Search characters"
         />
         <Spacer y={10} />
         <Filter onApplyFilters={handleApplyFilters} />
