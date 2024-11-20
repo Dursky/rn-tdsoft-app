@@ -1,26 +1,25 @@
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import React from 'react';
 import {CharacterDetailsScreen} from './screens';
 import {Header} from '@/components/Header';
 import {Footer} from '@/components/Footer';
 import {styles} from './screens/CharacterDetails/CharacterDetails.styled';
 
-const Tab = createBottomTabNavigator();
+const Stack = createNativeStackNavigator();
 
 export const CharacterDetailsStack = () => {
-  // NOTE: Stack has been replaced on Tab due to problems with maintaining the latest cache data - store context (like feature)
   return (
     <>
-      <Tab.Navigator
+      <Stack.Navigator
         screenOptions={{
           header: Header,
           ...styles,
         }}>
-        <Tab.Screen
+        <Stack.Screen
           name="CharacterDetailsScreen"
           component={CharacterDetailsScreen}
         />
-      </Tab.Navigator>
+      </Stack.Navigator>
       <Footer />
     </>
   );
