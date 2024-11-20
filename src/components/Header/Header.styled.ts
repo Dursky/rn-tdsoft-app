@@ -8,9 +8,9 @@ export const styles = StyleSheet.create({
   },
   container: {
     width: '100%',
-    paddingTop: theme.spacing.lg,
-    paddingBottom: theme.spacing.lg,
-    paddingLeft: theme.spacing.md,
+    paddingTop: theme.padding.lg,
+    paddingBottom: theme.padding.lg,
+    paddingLeft: theme.padding.md,
     backgroundColor: theme.colors.darkGreen,
   },
 });

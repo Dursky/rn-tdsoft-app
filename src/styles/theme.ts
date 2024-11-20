@@ -51,6 +51,13 @@ export const theme = {
     lg: 24,
     xl: 32,
   },
+  padding: {
+    xs: 4,
+    sm: 8,
+    md: 16,
+    lg: 24,
+    xl: 32,
+  },
   borderRadius: {
     pill: 100,
     xs: 4,

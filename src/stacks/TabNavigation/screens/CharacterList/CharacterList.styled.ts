@@ -7,15 +7,15 @@ export const styles = StyleSheet.create({
     backgroundColor: theme.colors.lightGreen,
   },
   heading: {
-    paddingLeft: theme.spacing.md,
-    paddingTop: theme.spacing.md,
-    paddingRight: theme.spacing.md,
+    paddingLeft: theme.padding.md,
+    paddingTop: theme.padding.md,
+    paddingRight: theme.padding.md,
   },
   list: {
     backgroundColor: theme.colors.lightGreen,
-    paddingLeft: theme.spacing.md,
-    paddingRight: theme.spacing.md,
-    paddingBottom: theme.spacing.md,
+    paddingLeft: theme.padding.md,
+    paddingRight: theme.padding.md,
+    paddingBottom: theme.padding.md,
   },
   errorText: {
     color: theme.colors.danger,
