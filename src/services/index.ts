@@ -3,3 +3,4 @@ export {
   fetchCharacterById,
   fetchMultipleCharacters,
 } from './api';
+export {queryClient} from './queryClient';

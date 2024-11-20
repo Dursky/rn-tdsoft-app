@@ -35,3 +35,10 @@ export interface CharacterFilters {
   type?: string;
   gender?: 'female' | 'male' | 'genderless' | 'unknown';
 }
+
+export interface FavoritesContextType {
+  favorites: Character[];
+  addFavorite: (character: Character) => void;
+  removeFavorite: (id: number) => void;
+  isFavorite: (id: number) => boolean;
+}
