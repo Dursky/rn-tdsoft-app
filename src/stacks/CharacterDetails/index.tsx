@@ -3,7 +3,7 @@ import React from 'react';
 import {CharacterDetailsScreen} from './screens';
 import {Header} from '@/components/Header';
 import {Footer} from '@/components/Footer';
-import {tabConfigStyles} from '../TabNavigation/Tab.styled';
+import {styles} from './screens/CharacterDetails/CharacterDetails.styled';
 
 const Tab = createBottomTabNavigator();
 
@@ -14,7 +14,7 @@ export const CharacterDetailsStack = () => {
       <Tab.Navigator
         screenOptions={{
           header: Header,
-          ...tabConfigStyles.tabBarStyle,
+          ...styles,
         }}>
         <Tab.Screen
           name="CharacterDetailsScreen"
