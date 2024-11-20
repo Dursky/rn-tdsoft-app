@@ -16,7 +16,7 @@ import {MainStackNavigationProp} from '@/stacks/Main/Main.routes';
 
 const CharacterListScreen = () => {
   const {navigate} = useNavigation<MainStackNavigationProp>();
-  const {toggleFavorite, favorites} = useFavorites();
+  const {toggleFavorite, favorites, isFavorite} = useFavorites();
   const {
     data,
     isLoading,
@@ -57,25 +57,21 @@ const CharacterListScreen = () => {
           data={characters}
           style={styles.list}
           ItemSeparatorComponent={getFlatListSpacer}
-          renderItem={({item}) => {
-            const isFavorite = favorites.some(fav => fav.id === item.id);
-
-            return (
-              <CharacterCard
-                item={item}
-                isLike={isFavorite}
-                onPress={() =>
-                  navigate('CharacterDetailsStack', {
-                    screen: 'CharacterDetailsScreen',
-                    params: item,
-                  })
-                }
-                onPressLike={async () => {
-                  await toggleFavorite(item);
-                }}
-              />
-            );
-          }}
+          renderItem={({item}) => (
+            <CharacterCard
+              item={item}
+              isLike={isFavorite(item.id)}
+              onPress={() =>
+                navigate('CharacterDetailsStack', {
+                  screen: 'CharacterDetailsScreen',
+                  params: item,
+                })
+              }
+              onPressLike={() => {
+                toggleFavorite(item);
+              }}
+            />
+          )}
           keyExtractor={item => item.id.toString()}
           contentContainerStyle={styles.list}
           extraData={favorites}
