@@ -1,7 +1,8 @@
 import {View, Text, FlatList, ActivityIndicator} from 'react-native';
-import React from 'react';
+import React, {useState} from 'react';
 import {styles} from './CharacterList.styled';
 import {useNavigation} from '@react-navigation/native';
+import debounce from 'lodash/debounce';
 
 import {theme} from '@/styles';
 import {SearchBar} from '@/components';
@@ -13,10 +14,14 @@ import {useFavorites} from '@/context/favorites';
 
 import {useCharacters} from '@/hooks/useCharacters';
 import {MainStackNavigationProp} from '@/stacks/Main/Main.routes';
+import {CharacterFilters} from '@/types';
 
 const CharacterListScreen = () => {
   const {navigate} = useNavigation<MainStackNavigationProp>();
   const {toggleFavorite, favorites, isFavorite} = useFavorites();
+  const [searchText, setSearchText] = useState('');
+  const [filters, setFilters] = useState<CharacterFilters>({});
+
   const {
     data,
     isLoading,
@@ -26,7 +31,7 @@ const CharacterListScreen = () => {
     hasNextPage,
     fetchNextPage,
     refetch,
-  } = useCharacters();
+  } = useCharacters(filters);
 
   const characters = data?.pages.flatMap(page => page.results) ?? [];
 
@@ -36,13 +41,36 @@ const CharacterListScreen = () => {
     }
   };
 
+  const handleSearch = (text: string) => {
+    setSearchText(text);
+
+    debounce(() => {
+      setFilters(prev => ({
+        ...prev,
+        name: text || undefined,
+      }));
+      refetch();
+    }, 300)();
+  };
+
+  const handleClear = () => {
+    setSearchText('');
+    setFilters({});
+    refetch();
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.heading}>
         <Text style={theme.typography.heading}>Characters</Text>
 
         <Spacer y={10} />
-        <SearchBar onChangeText={text => {}} value="" />
+        <SearchBar
+          onChangeText={handleSearch}
+          onClear={handleClear}
+          value={searchText}
+          placeholder="Search characters..."
+        />
       </View>
 
       <Spacer y={theme.spacing.md} />
@@ -74,7 +102,7 @@ const CharacterListScreen = () => {
           )}
           keyExtractor={item => item.id.toString()}
           contentContainerStyle={styles.list}
-          extraData={favorites}
+          extraData={[favorites, searchText]}
           refreshing={isLoading}
           onRefresh={() => {
             refetch();
