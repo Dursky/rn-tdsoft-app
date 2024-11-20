@@ -45,7 +45,7 @@ const FavoriteCharactersScreen = () => {
           onChangeText={setSearchText}
           onClear={() => setSearchText('')}
           value={searchText}
-          placeholder="Search favorite characters..."
+          placeholder="Search characters"
         />
         <Spacer y={10} />
         <Filter onApplyFilters={setFilters} initialFilters={filters} />

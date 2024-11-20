@@ -7,6 +7,7 @@ type iconType = 'whiteOutline' | 'greenOutline' | 'gold';
 type ButtonProps = {
   variant?: 'filled' | 'outlined';
   iconType?: iconType;
+  additionalIcon?: React.ReactNode;
   content?: string;
   onPress?: () => void;
   style?: ViewStyle;
@@ -21,6 +22,7 @@ export const Button = (props: ButtonProps) => {
     onPress,
     style,
     textStyle,
+    additionalIcon,
   } = props;
 
   const buttonIcons: Record<iconType, React.ReactNode> = {
@@ -37,7 +39,11 @@ export const Button = (props: ButtonProps) => {
         style,
       ]}
       onPress={onPress}>
-      {iconType ? buttonIcons[iconType] : null}
+      {additionalIcon
+        ? additionalIcon
+        : iconType
+        ? buttonIcons[iconType]
+        : null}
       <View style={styles.spacer} />
       <Text
         style={[

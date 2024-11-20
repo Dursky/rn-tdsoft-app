@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useRef, useState} from 'react';
 import {TouchableOpacity, View, Text, Animated, Dimensions} from 'react-native';
 import {DropShadow} from '../DropShadow/DropShadow.component';
 import {theme} from '@/styles';
@@ -6,6 +6,9 @@ import {Button} from '@/components/Button';
 import {CharacterFilters} from '@/types';
 import UpArrow from '../../icons/UpArrow';
 import DownArrow from '../../icons/DownArrow';
+import {styles} from './Filter.styled';
+import {Checkbox} from '../Checkbox/Checkbox.component';
+import {capitalizeFirstLetter} from '../../utils';
 
 const FILTER_OPTIONS: Record<
   keyof Pick<CharacterFilters, 'status' | 'species'>,
@@ -28,11 +31,11 @@ export const Filter = ({onApplyFilters, initialFilters}: FilterProps) => {
   const [selectedFilters, setSelectedFilters] = useState<CharacterFilters>(
     initialFilters ?? {},
   );
-  const translateY = useState(new Animated.Value(-SCREEN_HEIGHT))[0];
+  const translateY = useRef(new Animated.Value(0)).current;
 
   const toggleFilter = () => {
     Animated.spring(translateY, {
-      toValue: isOpen ? -SCREEN_HEIGHT / 2 - 50 : 0,
+      toValue: !isOpen ? -SCREEN_HEIGHT / 2 - 50 : 0,
       useNativeDriver: true,
       damping: 20,
       stiffness: 90,
@@ -63,117 +66,71 @@ export const Filter = ({onApplyFilters, initialFilters}: FilterProps) => {
   };
 
   return (
-    <View style={{position: 'relative', zIndex: 1000}}>
-      <TouchableOpacity
-        onPress={toggleFilter}
-        style={{
-          backgroundColor: theme.colors.primary,
-          paddingVertical: theme.spacing.md,
-          paddingHorizontal: theme.spacing.xl,
-          borderRadius: theme.spacing.xl,
-        }}>
-        <View
-          style={{
-            flexDirection: 'row',
-            alignItems: 'center',
-            gap: theme.spacing.sm,
-          }}>
-          <Text style={{color: theme.colors.white, fontWeight: 'bold'}}>
-            FILTER
-          </Text>
+    <View style={styles.container}>
+      <View>
+        <TouchableOpacity onPress={toggleFilter} style={styles.filterButton}>
+          <Text style={styles.filterText}>FILTER</Text>
           {isOpen ? <UpArrow /> : <DownArrow />}
-        </View>
-      </TouchableOpacity>
-
+        </TouchableOpacity>
+      </View>
       <Animated.View
-        style={{
-          transform: [{translateY}],
-          position: 'absolute',
-          width: '100%',
-          height: FILTER_HEIGHT,
-          top: SCREEN_HEIGHT - FILTER_HEIGHT,
-        }}>
+        style={[
+          styles.animatedContainer,
+          {
+            transform: [{translateY}],
+            height: FILTER_HEIGHT,
+            top: SCREEN_HEIGHT - FILTER_HEIGHT,
+          },
+        ]}>
         <DropShadow
           borderRadius={theme.spacing.lg}
           shadowColor={theme.colors.primary}>
-          <View
-            style={{
-              backgroundColor: theme.colors.white,
-              borderRadius: theme.spacing.lg,
-              padding: theme.spacing.lg,
-              gap: theme.spacing.lg,
-              height: '100%',
-            }}>
-            <View style={{flex: 1}}>
+          <View style={styles.optionsContainer}>
+            <View style={styles.optionsContent}>
               {(
                 Object.entries(FILTER_OPTIONS) as [
                   keyof typeof FILTER_OPTIONS,
                   string[],
                 ][]
               ).map(([category, options]) => (
-                <View key={category} style={{marginBottom: theme.spacing.lg}}>
-                  <Text
-                    style={{
-                      fontSize: 18,
-                      fontWeight: 'bold',
-                      marginBottom: theme.spacing.sm,
-                    }}>
+                <View key={category} style={styles.categoryContainer}>
+                  <Text style={styles.categoryTitle}>
                     {category.toUpperCase()}
                   </Text>
-                  <View
-                    style={{flexDirection: 'column', gap: theme.spacing.sm}}>
-                    {options.map(option => (
-                      <TouchableOpacity
-                        key={option}
-                        onPress={() => handleOptionPress(category, option)}
-                        style={{
-                          flexDirection: 'row',
-                          alignItems: 'center',
-                          gap: theme.spacing.sm,
-                        }}>
-                        <View
-                          style={{
-                            width: 24,
-                            height: 24,
-                            borderRadius: 4,
-                            borderWidth: 2,
-                            borderColor: theme.colors.primary,
-                            backgroundColor:
-                              selectedFilters[category] === option.toLowerCase()
-                                ? theme.colors.primary
-                                : 'transparent',
-                            alignItems: 'center',
-                            justifyContent: 'center',
-                          }}>
-                          {selectedFilters[category] ===
-                            option.toLowerCase() && (
-                            <Text style={{color: 'white'}}>✓</Text>
-                          )}
+                  <View style={styles.optionsList}>
+                    {options.map(option => {
+                      const isChecked =
+                        selectedFilters[category] === option.toLowerCase();
+
+                      return (
+                        <View style={styles.label}>
+                          <Checkbox
+                            onPress={() => handleOptionPress(category, option)}
+                            checked={isChecked}
+                          />
+                          <Text style={theme.typography.secondary}>
+                            {capitalizeFirstLetter(option)}
+                          </Text>
                         </View>
-                        <Text style={{fontSize: 16}}>{option}</Text>
-                      </TouchableOpacity>
-                    ))}
+                      );
+                    })}
                   </View>
                 </View>
               ))}
             </View>
 
-            <View
-              style={{
-                flexDirection: 'row',
-                justifyContent: 'space-between',
-              }}>
+            <View style={styles.buttonsContainer}>
               <Button
                 content="RESET"
                 variant="outlined"
                 onPress={handleReset}
-                style={{flex: 1, marginRight: theme.spacing.sm}}
+                style={styles.buttonLeft}
               />
               <Button
                 content="APPLY"
                 variant="filled"
                 onPress={handleApply}
-                style={{flex: 1, marginLeft: theme.spacing.sm}}
+                style={styles.buttonRight}
               />
             </View>
           </View>
