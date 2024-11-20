@@ -95,9 +95,10 @@ const CharacterListScreen = () => {
           data={characters}
           style={styles.list}
           ItemSeparatorComponent={getFlatListSpacer}
-          renderItem={({item}) => (
+          renderItem={({item, index}) => (
             <CharacterCard
               item={item}
+              key={index}
               isLike={isFavorite(item.id)}
               onPress={() =>
                 navigate('CharacterDetailsStack', {

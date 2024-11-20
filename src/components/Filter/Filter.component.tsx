@@ -98,12 +98,12 @@ export const Filter = ({onApplyFilters, initialFilters}: FilterProps) => {
                     {category.toUpperCase()}
                   </Text>
                   <View style={styles.optionsList}>
-                    {options.map(option => {
+                    {options.map((option, index) => {
                       const isChecked =
                         selectedFilters[category] === option.toLowerCase();
 
                       return (
-                        <View style={styles.label}>
+                        <View style={styles.label} key={index}>
                           <Checkbox
                             onPress={() => handleOptionPress(category, option)}
                             checked={isChecked}
