@@ -11,13 +11,12 @@ type DropShadowProps = {
   borderRadius?: number;
 };
 
-export const DropShadow = ({
-  children,
-  shadowColor = '#000',
-  offset = 4,
-  containerStyle = {},
-  borderRadius = 0,
-}: DropShadowProps) => {
+export const DropShadow = (props: DropShadowProps) => {
+  const {  children,
+    shadowColor = '#000',
+    offset = 4,
+    containerStyle = {},
+    borderRadius = 0} = props
   return (
     <View style={[styles.container, {borderRadius}, containerStyle]}>
       <Svg

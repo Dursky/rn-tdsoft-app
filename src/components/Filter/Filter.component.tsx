@@ -26,7 +26,8 @@ type FilterProps = {
   initialFilters?: CharacterFilters;
 };
 
-export const Filter = ({onApplyFilters, initialFilters}: FilterProps) => {
+export const Filter = (props: FilterProps) => {
+  const {onApplyFilters, initialFilters} = props
   const [isOpen, setIsOpen] = useState(false);
   const [selectedFilters, setSelectedFilters] = useState<CharacterFilters>(
     initialFilters ?? {},
@@ -40,7 +41,8 @@ export const Filter = ({onApplyFilters, initialFilters}: FilterProps) => {
       damping: 20,
       stiffness: 90,
     }).start();
-    setIsOpen(!isOpen);
+
+    setIsOpen((state) => !state);
   };
 
   const handleOptionPress = (

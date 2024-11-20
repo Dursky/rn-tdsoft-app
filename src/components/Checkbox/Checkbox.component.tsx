@@ -11,13 +11,12 @@ type CheckboxProps = {
   label?: string;
 };
 
-export const Checkbox = ({
-  checked,
-  onPress,
-  style,
-  disabled,
-  label,
-}: CheckboxProps) => {
+export const Checkbox = (props: CheckboxProps) => {
+  const {  checked,
+    onPress,
+    style,
+    disabled,
+    label} = props
   return (
     <TouchableOpacity
       onPress={onPress}
