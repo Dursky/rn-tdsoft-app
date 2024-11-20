@@ -12,6 +12,7 @@ type CharacterCardProps = {
   view?: 'detail' | 'basic';
   isLike?: boolean;
   onPress?: () => void;
+  onPressLike?: () => void;
   disabled?: boolean;
 };
 
@@ -21,6 +22,7 @@ export const CharacterCard = (props: CharacterCardProps) => {
     view = 'basic',
     isLike,
     onPress,
+    onPressLike,
     disabled,
   } = props;
 
@@ -72,6 +74,7 @@ export const CharacterCard = (props: CharacterCardProps) => {
                 style={
                   isLike ? styles.likeDetailButton : styles.notLikeDetailButton
                 }
+                onPress={onPressLike}
               />
             </View>
           </>
@@ -98,6 +101,7 @@ export const CharacterCard = (props: CharacterCardProps) => {
                 iconType={isLike ? 'gold' : 'greenOutline'}
                 variant="outlined"
                 style={isLike ? styles.likeButton : styles.notLikeButton}
+                onPress={onPressLike}
               />
             </View>
           </>

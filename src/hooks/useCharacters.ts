@@ -1,5 +1,5 @@
 import {useQuery, useQueries} from '@tanstack/react-query';
-import {CharacterFilters, Character, ApiResponse} from '@/services/types';
+import {CharacterFilters, Character, ApiResponse} from '@/types';
 import {fetchCharacters, fetchCharacterById} from '@/services/api';
 
 export const useCharacters = (page: number = 1, filters?: CharacterFilters) => {

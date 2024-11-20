@@ -7,7 +7,7 @@ import {Character} from '@/types';
 import {getFlatListSpacer} from '@/utils';
 import {BackArrowLabel} from '@/components/BackArrowLabel';
 import {Spacer} from '@/components/Spacer';
-import {theme} from '../../../../styles';
+import {theme} from '@/styles';
 
 const CharacterDetailsScreen = () => {
   const {params} = useRoute();

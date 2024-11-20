@@ -17,4 +17,13 @@ export const styles = StyleSheet.create({
     paddingRight: theme.spacing.md,
     paddingBottom: theme.spacing.md,
   },
+  errorText: {
+    color: theme.colors.danger,
+    textAlign: 'center',
+  },
+  loaderContainer: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: '100%',
+  },
 });
