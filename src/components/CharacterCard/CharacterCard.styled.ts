@@ -1,13 +1,13 @@
 import {StyleSheet} from 'react-native';
 import {theme} from '@/styles';
-import {getLetterSpacing} from '../../styles/theme';
+import {getLetterSpacing} from '@/styles/theme';
 
 export const styles = StyleSheet.create({
   container: {
     width: '100%',
     backgroundColor: theme.colors.lightGreen,
     borderRadius: 24,
-    padding: 8,
+    padding: theme.padding.sm,
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
@@ -22,7 +22,7 @@ export const styles = StyleSheet.create({
     shadowRadius: 10,
   },
   rowLabelContainer: {
-    padding: 8,
+    padding: theme.padding.sm,
   },
   labelsContainer: {
     flex: 1,
@@ -94,7 +94,7 @@ export const styles = StyleSheet.create({
     marginTop: 16,
   },
   detailLabelContainer: {
-    padding: 8,
+    padding: theme.padding.sm,
     backgroundColor: theme.colors.lightGrey,
     flex: 1,
     borderRadius: 10,

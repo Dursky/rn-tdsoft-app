@@ -7,7 +7,7 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     paddingTop: theme.spacing.lg,
-    paddingBottom: theme.spacing.lg,
+    paddingBottom: theme.padding.lg,
     paddingLeft: 45,
     paddingRight: 45,
     backgroundColor: theme.colors.darkGreen,

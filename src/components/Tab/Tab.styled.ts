@@ -8,8 +8,8 @@ export const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     backgroundColor: theme.colors.darkGreen,
-    paddingTop: 16,
-    paddingBottom: 16,
+    paddingTop: theme.padding.md,
+    paddingBottom: theme.padding.md,
   },
   active: {
     color: theme.colors.white,

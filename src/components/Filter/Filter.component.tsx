@@ -4,11 +4,11 @@ import {DropShadow} from '../DropShadow/DropShadow.component';
 import {theme} from '@/styles';
 import {Button} from '@/components/Button';
 import {CharacterFilters} from '@/types';
-import UpArrow from '../../icons/UpArrow';
-import DownArrow from '../../icons/DownArrow';
+import UpArrow from '@/icons/UpArrow';
+import DownArrow from '@/icons/DownArrow';
 import {styles} from './Filter.styled';
 import {Checkbox} from '../Checkbox/Checkbox.component';
-import {capitalizeFirstLetter} from '../../utils';
+import {capitalizeFirstLetter} from '@/utils';
 
 const FILTER_OPTIONS: Record<
   keyof Pick<CharacterFilters, 'status' | 'species'>,
