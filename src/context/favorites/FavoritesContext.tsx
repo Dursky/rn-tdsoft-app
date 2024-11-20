@@ -48,31 +48,32 @@ export const FavoritesProvider = ({children}: FavoritesProviderProps) => {
   };
 
   const addFavorite = async (character: Character) => {
-    setFavorites(oldState => {
-      if (!oldState.some(fav => fav.id === character.id)) {
-        const updatedFavorites = [...oldState, character];
+    try {
+      if (!favorites.some(fav => fav.id === character.id)) {
+        setFavorites(oldState => ({...oldState, character}));
 
         AsyncStorage.setItem(
           FAVORITES_STORAGE_KEY,
-          JSON.stringify(updatedFavorites),
-        ).catch(error => console.error('Error adding favorites:', error));
-        return updatedFavorites;
+          JSON.stringify([...favorites, character]),
+        );
       }
-
-      return oldState;
-    });
+    } catch (err) {
+      console.error('Something went wrong with addFavorite: ', err);
+    }
   };
 
   const removeFavorite = async (id: number) => {
-    setFavorites(oldState => {
-      const newFavorites = oldState.filter(char => char.id !== id);
+    try {
+      const newFavorites = favorites.filter(char => char.id !== id);
+      setFavorites(newFavorites);
 
-      AsyncStorage.setItem(
+      await AsyncStorage.setItem(
         FAVORITES_STORAGE_KEY,
         JSON.stringify(newFavorites),
-      ).catch(error => console.error('Error removing favorites:', error));
-      return newFavorites;
-    });
+      );
+    } catch (err) {
+      console.error('Something went wrong with removeFavorite: ', err);
+    }
   };
 
   const isFavorite = (id: number) => {
@@ -80,18 +81,20 @@ export const FavoritesProvider = ({children}: FavoritesProviderProps) => {
   };
 
   const toggleFavorite = async (character: Character) => {
-    setFavorites(oldState => {
-      const updatedFavorites = oldState.some(fav => fav.id === character.id)
-        ? oldState.filter(fav => fav.id !== character.id)
-        : [...oldState, character];
+    try {
+      const updatedFavorites = favorites.some(fav => fav.id === character.id)
+        ? favorites.filter(fav => fav.id !== character.id)
+        : [...favorites, character];
 
-      AsyncStorage.setItem(
+      setFavorites(updatedFavorites);
+
+      await AsyncStorage.setItem(
         FAVORITES_STORAGE_KEY,
         JSON.stringify(updatedFavorites),
-      ).catch(error => console.error('Error toggling favorite:', error));
-
-      return updatedFavorites;
-    });
+      );
+    } catch (err) {
+      console.error('Something went wrong with toggleFavorite: ', err);
+    }
   };
 
   const contextValue: FavoritesContextType = {

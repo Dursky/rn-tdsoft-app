@@ -1,11 +1,26 @@
-import {useQuery, useQueries} from '@tanstack/react-query';
+import {useQuery, useQueries, useInfiniteQuery} from '@tanstack/react-query';
 import {CharacterFilters, Character, ApiResponse} from '@/types';
 import {fetchCharacters, fetchCharacterById} from '@/services/api';
 
-export const useCharacters = (page: number = 1, filters?: CharacterFilters) => {
-  return useQuery<ApiResponse<Character>, Error>({
-    queryKey: ['characters', page, filters],
-    queryFn: () => fetchCharacters(page, filters),
+export const useCharacters = (filters?: CharacterFilters) => {
+  return useInfiniteQuery<ApiResponse<Character>, Error>({
+    queryKey: ['characters', filters],
+    queryFn: ({pageParam}) => fetchCharacters(pageParam as number, filters),
+    getNextPageParam: (lastPage, pages) => {
+      // Check if there's a next page
+      if (lastPage.info.next) {
+        return pages.length + 1;
+      }
+      return undefined;
+    },
+    getPreviousPageParam: (firstPage, pages) => {
+      // Check if there's a previous page
+      if (firstPage.info.prev) {
+        return pages.length - 1;
+      }
+      return undefined;
+    },
+    initialPageParam: 1,
   });
 };
 

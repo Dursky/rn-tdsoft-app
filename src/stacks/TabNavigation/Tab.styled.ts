@@ -1,5 +1,5 @@
 export const tabConfigStyles = {
-  headerShown: false,
+  headerShown: true,
   tabBarStyle: {
     height: 70,
   },
