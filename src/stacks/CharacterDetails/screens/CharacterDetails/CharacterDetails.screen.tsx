@@ -2,16 +2,23 @@ import {FlatList, View} from 'react-native';
 import React from 'react';
 import {styles} from './CharacterDetails.styled';
 import {CharacterCard} from '@/components/CharacterCard';
-import {useNavigation, useRoute} from '@react-navigation/native';
+import {RouteProp, useNavigation, useRoute} from '@react-navigation/native';
 import {Character} from '@/types';
 import {getFlatListSpacer} from '@/utils';
 import {BackArrowLabel} from '@/components/BackArrowLabel';
 import {Spacer} from '@/components/Spacer';
 import {theme} from '@/styles';
+import {useFavorites} from '@/context/favorites';
+
+type CharacterDetailsParams = {
+  CharacterDetailsScreen: Character;
+};
 
 const CharacterDetailsScreen = () => {
-  const {params} = useRoute();
+  const {params} =
+    useRoute<RouteProp<CharacterDetailsParams, 'CharacterDetailsScreen'>>();
   const {goBack} = useNavigation();
+  const {isFavorite, toggleFavorite} = useFavorites();
 
   return (
     <View style={styles.container}>
@@ -24,7 +31,15 @@ const CharacterDetailsScreen = () => {
         style={styles.list}
         ItemSeparatorComponent={getFlatListSpacer}
         renderItem={({item}) => (
-          <CharacterCard item={item} disabled view="detail" />
+          <CharacterCard
+            item={item}
+            disabled
+            view="detail"
+            isLike={isFavorite(params.id)}
+            onPressLike={() => {
+              toggleFavorite(item);
+            }}
+          />
         )}
         keyExtractor={item => item.id.toString()}
         contentContainerStyle={styles.listContent}

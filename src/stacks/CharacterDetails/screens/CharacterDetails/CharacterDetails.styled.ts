@@ -19,4 +19,7 @@ export const styles = StyleSheet.create({
   link: {
     padding: theme.spacing.md,
   },
+  tabBarStyle: {
+    display: 'none',
+  },
 });
