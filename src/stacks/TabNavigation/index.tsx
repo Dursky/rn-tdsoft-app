@@ -1,11 +1,11 @@
 import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {CharacterListStack} from '../CharacterList';
-import {FavoriteCharactersStack} from '../FavoriteCharacters';
+import {CharacterListScreen} from '../TabNavigation/screens/CharacterList';
+import {FavoriteCharactersScreen} from './screens/FavoriteCharacters';
 import {Tab as TabComponent} from '@/components';
 import {tabConfigStyles} from './Tab.styled';
 import {Footer} from '@/components/Footer';
-import {Header} from '@/components/Header';
+import {Header} from '../../components/Header';
 
 type TabParamList = {
   'ALL CHARACTERS': undefined;
@@ -32,6 +32,7 @@ const createTabScreenProps = (
   extraOptions: ExtraOptions = {},
 ) => ({
   ...tabConfigStyles,
+  header: Header,
   tabBarButton: ({onPress, accessibilityState}: TabScreenProps) => (
     <TabComponent
       type={type}
@@ -48,15 +49,13 @@ export const TabNavigationStack = () => {
       <Tab.Navigator>
         <Tab.Screen
           name="ALL CHARACTERS"
-          component={CharacterListStack}
+          component={CharacterListScreen}
           options={createTabScreenProps('allCharacters')}
         />
         <Tab.Screen
           name="LIKED CHARACTERS"
-          component={FavoriteCharactersStack}
-          options={createTabScreenProps('likedCharacters', {
-            header: Header,
-          })}
+          component={FavoriteCharactersScreen}
+          options={createTabScreenProps('likedCharacters')}
         />
       </Tab.Navigator>
       <Footer />

@@ -1,26 +1,40 @@
 import {View, Text, FlatList, ActivityIndicator} from 'react-native';
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import {styles} from './CharacterList.styled';
-import {useIsFocused, useNavigation} from '@react-navigation/native';
-import {CharacterListStackNavigationProp} from '../../CharacterList.routes';
+import {useNavigation} from '@react-navigation/native';
+
 import {theme} from '@/styles';
 import {SearchBar} from '@/components';
 import {Spacer} from '@/components/Spacer/Spacer.component';
 import {CharacterCard} from '@/components/CharacterCard';
-import {mockData} from '@/utils/mock';
+
 import {getFlatListSpacer} from '@/utils';
 import {useFavorites} from '@/context/favorites';
-import {Character} from '@/types';
+
 import {useCharacters} from '@/hooks/useCharacters';
-import {queryClient} from '@/services';
+import {MainStackNavigationProp} from '@/stacks/Main/Main.routes';
 
 const CharacterListScreen = () => {
-  const {navigate} = useNavigation<CharacterListStackNavigationProp>();
-  const {toggleFavorite, favorites, loadFavorites} = useFavorites();
-  const {data, isLoading, isError, error, isFetching} = useCharacters(1);
-  const [page, setPage] = useState(1);
+  const {navigate} = useNavigation<MainStackNavigationProp>();
+  const {toggleFavorite, favorites} = useFavorites();
+  const {
+    data,
+    isLoading,
+    isError,
+    error,
+    isFetchingNextPage,
+    hasNextPage,
+    fetchNextPage,
+    refetch,
+  } = useCharacters();
 
-  const characters = data?.results || [];
+  const characters = data?.pages.flatMap(page => page.results) ?? [];
+
+  const handleLoadMore = () => {
+    if (hasNextPage && !isFetchingNextPage) {
+      fetchNextPage();
+    }
+  };
 
   return (
     <View style={styles.container}>
@@ -65,18 +79,17 @@ const CharacterListScreen = () => {
           keyExtractor={item => item.id.toString()}
           contentContainerStyle={styles.list}
           extraData={favorites}
-          refreshing={isFetching}
+          refreshing={isLoading}
           onRefresh={() => {
-            queryClient.invalidateQueries({
-              queryKey: ['characters', 1],
-            });
+            refetch();
           }}
-          onEndReached={() => {
-            if (!isFetching && data?.info?.next) {
-              setPage(prev => prev + 1);
-            }
-          }}
+          onEndReached={handleLoadMore}
           onEndReachedThreshold={0.5}
+          ListFooterComponent={() =>
+            isFetchingNextPage ? (
+              <ActivityIndicator size="large" color={theme.colors.primary} />
+            ) : null
+          }
         />
       )}
     </View>
