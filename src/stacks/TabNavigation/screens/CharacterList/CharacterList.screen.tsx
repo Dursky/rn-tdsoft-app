@@ -15,6 +15,7 @@ import {useFavorites} from '@/context/favorites';
 import {useCharacters} from '@/hooks/useCharacters';
 import {MainStackNavigationProp} from '@/stacks/Main/Main.routes';
 import {CharacterFilters} from '@/types';
+import {Filter} from '@/components/Filter';
 
 const CharacterListScreen = () => {
   const {navigate} = useNavigation<MainStackNavigationProp>();
@@ -59,6 +60,14 @@ const CharacterListScreen = () => {
     refetch();
   };
 
+  const handleApplyFilters = (newFilters: CharacterFilters) => {
+    setFilters(prev => ({
+      ...prev,
+      status: newFilters.status,
+      species: newFilters.species,
+    }));
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.heading}>
@@ -71,6 +80,8 @@ const CharacterListScreen = () => {
           value={searchText}
           placeholder="Search characters..."
         />
+        <Spacer y={10} />
+        <Filter onApplyFilters={handleApplyFilters} />
       </View>
 
       <Spacer y={theme.spacing.md} />
