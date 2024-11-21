@@ -51,14 +51,6 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
   },
-  buttonLeft: {
-    flex: 1,
-    marginRight: theme.spacing.sm,
-  },
-  buttonRight: {
-    flex: 1,
-    marginLeft: theme.spacing.sm,
-  },
   label: {
     flexDirection: 'row',
     gap: theme.spacing.sm,

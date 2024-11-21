@@ -27,7 +27,7 @@ type FilterProps = {
 };
 
 export const Filter = (props: FilterProps) => {
-  const {onApplyFilters, initialFilters} = props
+  const {onApplyFilters, initialFilters} = props;
   const [isOpen, setIsOpen] = useState(false);
   const [selectedFilters, setSelectedFilters] = useState<CharacterFilters>(
     initialFilters ?? {},
@@ -42,7 +42,7 @@ export const Filter = (props: FilterProps) => {
       stiffness: 90,
     }).start();
 
-    setIsOpen((state) => !state);
+    setIsOpen(state => !state);
   };
 
   const handleOptionPress = (
@@ -120,20 +120,13 @@ export const Filter = (props: FilterProps) => {
                 </View>
               ))}
             </View>
-
             <View style={styles.buttonsContainer}>
               <Button
                 content="RESET"
                 variant="outlined"
                 onPress={handleReset}
-                style={styles.buttonLeft}
               />
-              <Button
-                content="APPLY"
-                variant="filled"
-                onPress={handleApply}
-                style={styles.buttonRight}
-              />
+              <Button content="APPLY" variant="filled" onPress={handleApply} />
             </View>
           </View>
         </DropShadow>
